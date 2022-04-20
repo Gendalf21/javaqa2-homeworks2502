@@ -7,9 +7,25 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class RadioTest {
 
     @Test
+    public void shouldUseConstructorNumberStation1() {
+        Radio rd = new Radio(10);
+
+        assertEquals(10, rd.getNumberStation());
+    }
+    @Test
+    public void shouldUseConstructorNumberStation2() {
+        Radio rd1 = new Radio();
+        rd1.setNumberStation(10);
+
+        assertEquals(10, rd1.getNumberStation());
+    }
+
+
+    @Test
     public void shouldUseConstuctorCurrentStation1() {
-        Radio rd = new Radio(23, 0, 22, 21, 50, 0, 100);
-        assertEquals(23, rd.getCurrentStation());
+        Radio rd1 = new Radio();
+
+        assertEquals(5, rd1.getCurrentStation());
     }
 
     @Test
@@ -27,23 +43,11 @@ class RadioTest {
     }
 
     @Test
-    public void shouldUseConstuctorCurrentVolume1() {
-        Radio rd = new Radio(10, 0, 15, 14, 102, 0, 100);
-        assertEquals(102, rd.getCurrentVolume());
-    }
-
-    @Test
-    public void shouldUseConstuctorCurrentVolume2() {
-        Radio rd = new Radio(10, 0, 15, 14, 0, 0, 100);
-        assertEquals(0, rd.getCurrentVolume());
-    }
-
-    @Test
     public void shouldUseConstuctorNextStation() {
-        Radio rd = new Radio(5, 0, 21, 20, 15, 0, 100);
-        rd.nextStation();
+        Radio rd1 = new Radio();
+        rd1.nextStation();
 
-        assertEquals(6, rd.getCurrentStation());
+        assertEquals(6, rd1.getCurrentStation());
     }
 
     @Test
@@ -55,34 +59,41 @@ class RadioTest {
     }
 
     @Test
-    public void increaseVolumeIn() {
-        Radio rd = new Radio(10, 0, 20, 19, 10, 0, 100);
-        rd.increaseVolume();
+    public void shouldUseConstuctorCurrentVolume1() {
+        Radio rd1 = new Radio();
 
-        assertEquals(11, rd.getCurrentVolume());
+        assertEquals(60, rd1.getCurrentVolume());
+    }
+
+    @Test
+    public void increaseVolumeIn() {
+        Radio rd1 = new Radio();
+        rd1.increaseVolume();
+
+        assertEquals(61, rd1.getCurrentVolume());
     }
 
     @Test
     public void increaseVolumeUp() {
-        Radio rd = new Radio(10, 0, 20, 19, 100, 0, 100);
-        rd.increaseVolume();
+        Radio rd3 = new Radio (50, 0, 50);
+        rd3.increaseVolume();
 
-        assertEquals(100, rd.getCurrentVolume());
+        assertEquals(50, rd3.getCurrentVolume());
     }
 
     @Test
     public void decreaseVolumeIn() {
-        Radio rd = new Radio(10, 0, 20, 19, 50, 0, 100);
-        rd.decreaseVolume();
+        Radio rd1 = new Radio();
+        rd1.decreaseVolume();
 
-        assertEquals(49, rd.getCurrentVolume());
+        assertEquals(59, rd1.getCurrentVolume());
     }
 
     @Test
     public void decreaseVolumeLow() {
-        Radio rd = new Radio(10, 0, 20, 19, 0, 0, 100);
-        rd.decreaseVolume();
+        Radio rd3 = new Radio(0, 0, 100 );
+        rd3.decreaseVolume();
 
-        assertEquals(0, rd.getCurrentVolume());
+        assertEquals(0, rd3.getCurrentVolume());
     }
 }
