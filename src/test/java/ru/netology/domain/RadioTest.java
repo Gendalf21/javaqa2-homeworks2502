@@ -2,191 +2,98 @@ package ru.netology.domain;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class RadioTest {
 
     @Test
-    public void currentStation() {
-        Radio rd = new Radio();
-        rd.currentStation = 8;
+    public void shouldUseConstructorNumberStation1() {
+        Radio rd = new Radio(10);
 
-        int expected = 8;
-        int actual = rd.getCurrentStation();
+        assertEquals(10, rd.getNumberStation());
+    }
+    @Test
+    public void shouldUseConstructorNumberStation2() {
+        Radio rd1 = new Radio();
+        rd1.setNumberStation(10);
 
-        assertEquals(actual, expected);
+        assertEquals(10, rd1.getNumberStation());
+    }
+
+
+    @Test
+    public void shouldUseConstuctorCurrentStation1() {
+        Radio rd1 = new Radio();
+
+        assertEquals(5, rd1.getCurrentStation());
     }
 
     @Test
-    public void setCurrentStationLow() {
-        Radio rd = new Radio();
-        rd.setCurrentStation(-1);
-
-        int expected = 0;
-        int actual = rd.getCurrentStation();
-
-        assertEquals(actual, expected);
+    public void shouldUseConstuctorCurrentStation2() {
+        Radio rd1 = new Radio();
+        rd1.setCurrentStation(15);
+        assertEquals(9, rd1.getCurrentStation());
     }
 
     @Test
-    public void setCurrentStationIn() {
-        Radio rd = new Radio();
-        rd.setCurrentStation(5);
-
-        int expected = 5;
-        int actual = rd.getCurrentStation();
-
-        assertEquals(actual, expected);
+    public void shouldUseConstuctorCurrentStation3() {
+        Radio rd1 = new Radio();
+        rd1.setCurrentStation(0);
+        assertEquals(0, rd1.getCurrentStation());
     }
 
     @Test
-    public void setCurrentStationUp() {
-        Radio rd = new Radio();
-        rd.setCurrentStation(11);
+    public void shouldUseConstuctorNextStation() {
+        Radio rd1 = new Radio();
+        rd1.nextStation();
 
-        int expected = 0;
-        int actual = rd.getCurrentStation();
-
-        assertEquals(actual, expected);
+        assertEquals(6, rd1.getCurrentStation());
     }
 
     @Test
-    public void nextStationUp() {
-        Radio rd = new Radio();
-        rd.setCurrentStation(9);
-        rd.nextStation();
+    public void shouldUseConstuctorPrevtStation() {
+        Radio rd1 = new Radio();
+        rd1.prevStation();
 
-        int expected = 0;
-        int actual = rd.getCurrentStation() - 9;
-
-        assertEquals(actual, expected);
+        assertEquals(4, rd1.getCurrentStation());
     }
 
     @Test
-    public void nextStationIn() {
-        Radio rd = new Radio();
-        rd.setCurrentStation(1);
-        rd.nextStation();
+    public void shouldUseConstuctorCurrentVolume1() {
+        Radio rd1 = new Radio();
 
-        int expected = 2;
-        int actual = rd.getCurrentStation();
-
-        assertEquals(actual, expected);
-    }
-
-    @Test
-    public void prevStationIn() {
-        Radio rd = new Radio();
-        rd.setCurrentStation(8);
-        rd.prevStation();
-
-        int expected = 7;
-        int actual = rd.getCurrentStation();
-
-        assertEquals(actual, expected);
-    }
-
-    @Test
-    public void prevStationLow() {
-        Radio rd = new Radio();
-        rd.setCurrentStation(0);
-        rd.prevStation();
-
-        int expected = 9;
-        int actual = rd.getCurrentStation() + 9;
-
-        assertEquals(actual, expected);
-    }
-
-    @Test
-    public void currentVolume() {
-        Radio rd = new Radio();
-        rd.currentVolume = 8;
-
-        int expected = 8;
-        int actual = rd.getCurrentVolume();
-
-        assertEquals(actual, expected);
-    }
-
-    @Test
-    public void setCurrentVolumeLow() {
-        Radio rd = new Radio();
-        rd.setCurrentVolume(-5);
-
-        int expected = 0;
-        int actual = rd.getCurrentVolume();
-
-        assertEquals(actual, expected);
-    }
-
-    @Test
-    public void setCurrentVolumeIn() {
-        Radio rd = new Radio();
-        rd.setCurrentVolume(7);
-
-        int expected = 7;
-        int actual = rd.getCurrentVolume();
-
-        assertEquals(actual, expected);
-    }
-
-    @Test
-    public void setCurrentVolumeUp() {
-        Radio rd = new Radio();
-        rd.setCurrentVolume(11);
-
-        int expected = 0;
-        int actual = rd.getCurrentVolume();
-
-        assertEquals(actual, expected);
-    }
-
-    @Test
-    public void increaseVolumeUp() {
-        Radio rd = new Radio();
-        rd.setCurrentVolume(10);
-        rd.increaseVolume();
-
-        int expected = 10;
-        int actual = rd.getCurrentVolume();
-
-        assertEquals(actual, expected);
+        assertEquals(60, rd1.getCurrentVolume());
     }
 
     @Test
     public void increaseVolumeIn() {
-        Radio rd = new Radio();
-        rd.setCurrentVolume(5);
-        rd.increaseVolume();
+        Radio rd1 = new Radio();
+        rd1.increaseVolume();
 
-        int expected = 6;
-        int actual = rd.getCurrentVolume();
+        assertEquals(61, rd1.getCurrentVolume());
+    }
 
-        assertEquals(actual, expected);
+    @Test
+    public void increaseVolumeUp() {
+        Radio rd3 = new Radio (50, 0, 50);
+        rd3.increaseVolume();
+
+        assertEquals(50, rd3.getCurrentVolume());
     }
 
     @Test
     public void decreaseVolumeIn() {
-        Radio rd = new Radio();
-        rd.setCurrentVolume(9);
-        rd.decreaseVolume();
+        Radio rd1 = new Radio();
+        rd1.decreaseVolume();
 
-        int expected = 8;
-        int actual = rd.getCurrentVolume();
-
-        assertEquals(actual, expected);
+        assertEquals(59, rd1.getCurrentVolume());
     }
+
     @Test
     public void decreaseVolumeLow() {
-        Radio rd = new Radio();
-        rd.setCurrentVolume(0);
-        rd.decreaseVolume();
+        Radio rd3 = new Radio(0, 0, 100 );
+        rd3.decreaseVolume();
 
-        int expected = 0;
-        int actual = rd.getCurrentVolume();
-
-        assertEquals(actual, expected);
+        assertEquals(0, rd3.getCurrentVolume());
     }
-
 }
